@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: iflytek-cloud-caas-demo-provider
+  cloud:
+    nacos:
+      config:
+        server-addr: 172.30.92.13:31244
+        file-extension: yaml
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr}
