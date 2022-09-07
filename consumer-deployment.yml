@@ -23,7 +23,7 @@ spec:
       containers:
         - name: container-hqdtnb
           image: >-
-            registry.cn-beijing.aliyuncs.com/barnnamespace/microservice-frontend:latest
+            registry.cn-beijing.aliyuncs.com/barnnamespace/microservice-frontend:v1.0.0
           ports:
             - name: http-port
               containerPort: 8081
