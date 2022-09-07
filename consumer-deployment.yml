@@ -1,0 +1,56 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: yunxiao-frontend
+  namespace: container-demo
+  labels:
+    app: yunxiao-frontend
+  annotations:
+    deployment.kubernetes.io/revision: '1'
+    kubesphere.io/creator: demouser1
+    kubesphere.io/description: 使用容器云手动部署
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: yunxiao-frontend
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: yunxiao-frontend
+    spec:
+      containers:
+        - name: container-hqdtnb
+          image: >-
+            registry.cn-beijing.aliyuncs.com/barnnamespace/microservice-frontend:latest
+          ports:
+            - name: http-port
+              containerPort: 8081
+              protocol: TCP
+          env:
+            - name: NACOS_ADDR
+              value: 'nacos-svc:8848'
+          resources:
+            limits:
+              cpu: 990m
+              memory: 1000Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: default
+      serviceAccount: default
+      securityContext: {}
+      imagePullSecrets:
+        - name: microservice-backend
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
