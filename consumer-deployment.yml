@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: yunxiao-frontend
-  namespace: container-demo
+  namespace: demo
   labels:
     app: yunxiao-frontend
   annotations:
