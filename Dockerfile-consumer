@@ -1,4 +1,4 @@
-FROM artifacts.iflytek.com/docker-private/paas/base:pure
+FROM mirrors.aliyun.com/centos:7.8.2003
 #FROM openjdk:8-jdk
 MAINTAINER djduan
 
